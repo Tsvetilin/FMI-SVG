@@ -139,7 +139,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Circle.cpp" />
+    <ClCompile Include="Common.cpp" />
     <ClCompile Include="FMI SVG.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="String.cpp" />
+    <ClCompile Include="SVGCircle.cpp" />
+    <ClCompile Include="SVGCollection.hpp" />
+    <ClCompile Include="SVGGeometryAttribute.hpp" />
+    <ClCompile Include="SVGRectangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Circle.hpp" />
+    <ClInclude Include="Common.hpp" />
+    <ClInclude Include="IPrintable.hpp" />
+    <ClInclude Include="ISerializable.hpp" />
+    <ClInclude Include="Line.hpp" />
+    <ClInclude Include="Rectangle.hpp" />
+    <ClInclude Include="SVGAttribute.hpp" />
+    <ClInclude Include="SVGCircle.hpp" />
+    <ClInclude Include="SVGElement.hpp" />
+    <ClInclude Include="String.hpp" />
+    <ClInclude Include="SVGLine.hpp" />
+    <ClInclude Include="SVGShape.hpp" />
+    <ClInclude Include="SVGStyleAttribute.hpp" />
+    <ClInclude Include="List.hpp" />
+    <ClInclude Include="Point.hpp" />
+    <ClInclude Include="SVGRectangle.hpp" />
+    <ClInclude Include="Shape.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
