@@ -32,6 +32,10 @@ public:
 		return name;
 	}
 
+	AttributeType getType()const {
+		return type;
+	}
+
 	String getValueAsString() const {
 		return value;
 	}

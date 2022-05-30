@@ -46,7 +46,7 @@ protected:
 		}
 	}
 
-	int getAttributeIndex(const String& name) {
+	int getAttributeIndex(const String& name) const {
 		for (size_t i = 0; i < attributes.getCount(); i++)
 		{
 			if (attributes[i]->getName() == name) {
@@ -64,6 +64,10 @@ protected:
 public:
 
 	SVGElement() :type(ElementType::Unknown) {}
+
+	SVGElement(ElementType type):type(type){
+		//name = determineName(type);
+	}
 
 	SVGElement(const String& svgString) {
 		parseSVGString(svgString);
@@ -108,17 +112,17 @@ public:
 		attributes[index]->setValue(value);
 	}
 
-	virtual bool addAttribute(const SVGAttribute*& attribute) {
+	virtual bool addAttribute(const SVGAttribute& attribute) {
 		// TODO: duplicate check
-		attributes.add(cloneAttribute(attribute));
+		attributes.add(cloneAttribute(&attribute));
 		return true;
 	}
 
-	virtual bool containsAttribute(const String& attributeName) {
+	virtual bool containsAttribute(const String& attributeName)const {
 		return getAttributeIndex(attributeName) != -1;
 	}
 
-	virtual SVGAttribute* getAttribute(const String& attributeName) {
+	virtual SVGAttribute* getAttribute(const String& attributeName)const {
 		int index = getAttributeIndex(attributeName);
 		if (index == -1) {
 			throw std::out_of_range("Attribute not found.");
@@ -128,7 +132,7 @@ public:
 		return attributes[index];
 	}
 
-	virtual String getAttributeValue(const String& attributeName) {
+	virtual String getAttributeValue(const String& attributeName) const {
 		return getAttribute(attributeName)->getValueAsString();
 	}
 

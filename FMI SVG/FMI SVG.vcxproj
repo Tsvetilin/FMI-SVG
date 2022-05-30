@@ -149,6 +149,7 @@
     <ClCompile Include="SVGCollection.hpp" />
     <ClCompile Include="SVGGeometryAttribute.hpp" />
     <ClCompile Include="SVGRectangle.cpp" />
+    <ClCompile Include="SVGShape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circle.hpp" />

@@ -1,6 +1,6 @@
 #include "SVGCircle.hpp"
 
-SVGCircle::SVGCircle(const SVGElement& element) : SVGShape(element, 1), Circle(), Shape(1)
+SVGCircle::SVGCircle(const SVGElement& element) : SVGShape(element, 1), Shape(1)
 {
 	double cx = getAttribute("cx")->getValueAsDouble();
 	double cy = getAttribute("cy")->getValueAsDouble();
