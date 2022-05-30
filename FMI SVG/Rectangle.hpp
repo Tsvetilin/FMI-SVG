@@ -11,8 +11,8 @@ public:
 	Rectangle(double x, double y, double width, double heigth);
 	virtual double getArea() const override;
 	virtual double getPerimeter()  const override;
-	virtual bool isPointIn(int x, int y) const override;
+	virtual bool isPointIn(double x, double y) const override;
 	virtual bool isWithin(const Shape* other) const override;
 
-	virtual void translate(int x, int y);
+	virtual void translate(double x, double y);
 };

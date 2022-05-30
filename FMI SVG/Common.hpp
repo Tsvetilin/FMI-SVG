@@ -21,6 +21,12 @@ char digitToChar(size_t c);
 
 size_t getNumberDigitsCount(size_t num);
 
+String matchCmd(const String& input);
+String skipCmd(const String& input);
+String getQuotes(const String& input);
+String getLastArgument(const String& input);
+String getAfterQuotes(const String& input);
+
 template<typename T>
 T min(const T& first, const T& second) {
 	return first < second ? first : second;

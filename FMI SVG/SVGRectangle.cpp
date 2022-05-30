@@ -18,7 +18,7 @@ SVGRectangle::SVGRectangle(const SVGElement& element) : SVGShape(element, 4), Sh
 	createRectangle(x, y, width, heigth);
 }
 
-void SVGRectangle::translate(int x, int y) {
+void SVGRectangle::translate(double x, double y) {
 	Rectangle::translate(x, y);
 	setAttribute("x", getPoint(0).getX());
 	setAttribute("y", getPoint(0).getY());
@@ -26,7 +26,7 @@ void SVGRectangle::translate(int x, int y) {
 
 
 void SVGRectangle::print(std::ostream& stream) const {
-	stream << "rectangle " << getPoint(0).getX() << " " << getPoint(0).getX() << " " <<
+	stream << "rectangle " << getPoint(0).getX() << " " << getPoint(0).getY() << " " <<
 		getAttribute("width")->getValueAsDouble() << " " << getAttribute("heigth")->getValueAsDouble() << " ";
 
 	for (size_t i = 0; i < attributes.getCount(); i++)

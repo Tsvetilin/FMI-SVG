@@ -1,11 +1,15 @@
 #include "Circle.hpp"
 
+void Circle::createCircle(double x, double y, double r) {
+	radius = r;
+	setPoint(0, x, y);
+}
+
 Circle::Circle() :Shape(1),radius(0) {}
 
 Circle::Circle(double x, double y, double r) : Shape(1)
 {
-	radius = r;
-	setPoint(0, x, y);
+	createCircle(x, y, r);
 }
 
 double Circle::getArea() const {
@@ -16,7 +20,7 @@ double Circle::getPerimeter()  const {
 	return 2 * PI * radius;
 }
 
-bool Circle::isPointIn(int x, int y) const {
+bool Circle::isPointIn(double x, double y) const {
 	return getPoint(0).distanceTo(x, y) < radius;
 
 }
@@ -31,6 +35,6 @@ bool Circle::isWithin(const Shape* other) const {
 		other->isPointIn(centerX, centerY - radius);
 }
 
-void Circle::translate(int x, int y) {
+void Circle::translate(double x, double y) {
 	getPoint(0).translate(x, y);
 }

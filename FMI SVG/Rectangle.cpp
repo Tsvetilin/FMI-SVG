@@ -27,7 +27,7 @@ double Rectangle::getPerimeter()  const {
 	return  2 * (width + height);
 }
 
-bool Rectangle::isPointIn(int x, int y) const {
+bool Rectangle::isPointIn(double x, double y) const {
 	return x >= getPoint(0).getX() && x <= getPoint(1).getX() &&
 		y >= getPoint(0).getY() && y <= getPoint(3).getY();
 }
@@ -43,7 +43,7 @@ bool Rectangle::isWithin(const Shape* other) const {
 	return true;
 }
 
-void Rectangle::translate(int x, int y) {
+void Rectangle::translate(double x, double y) {
 	for (size_t i = 0; i < getPointsCount(); i++)
 	{
 		getPoint(i).translate(x, y);

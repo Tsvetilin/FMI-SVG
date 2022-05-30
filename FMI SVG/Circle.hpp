@@ -6,14 +6,15 @@ class Circle : public virtual Shape
 {
 protected:
 	double radius;
+	void createCircle(double x, double y, double r);
 
 public:
 	Circle();
 	Circle(double x, double y, double r);
 	virtual double getArea() const override;
 	virtual double getPerimeter()  const override;
-	virtual bool isPointIn(int x, int y) const override;
+	virtual bool isPointIn(double x, double y) const override;
 	virtual bool isWithin(const Shape* other) const override;
 
-	virtual void translate(int x, int y) override;
+	virtual void translate(double x, double y) override;
 };

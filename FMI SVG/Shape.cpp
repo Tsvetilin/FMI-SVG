@@ -8,7 +8,7 @@ const Point& Shape::getPoint(size_t index) const {
 	return points[index];
 }
 
-void Shape::setPoint(size_t index, int x, int y) {
+void Shape::setPoint(size_t index, double x, double y) {
 	if (index < points.getCount()) {
 		points[index].set(x, y);
 	}
@@ -21,7 +21,7 @@ Shape::Shape(size_t pointsCount) :points(pointsCount) {
 	}
 }
 
-void Shape::translate(int x, int y) {
+void Shape::translate(double x, double y) {
 	for (size_t i = 0; i < points.getCount(); i++)
 	{
 		points[i].translate(x, y);

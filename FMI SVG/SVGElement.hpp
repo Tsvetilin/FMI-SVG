@@ -101,6 +101,7 @@ public:
 		}
 
 		attributes[index]->setValue(value);
+		return true;
 	}
 
 	virtual bool setAttribute(const String& attributeName, double value) {
@@ -110,6 +111,7 @@ public:
 		}
 
 		attributes[index]->setValue(value);
+		return true;
 	}
 
 	virtual bool addAttribute(const SVGAttribute& attribute) {

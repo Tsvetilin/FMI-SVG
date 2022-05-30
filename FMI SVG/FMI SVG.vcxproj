@@ -141,17 +141,22 @@
   <ItemGroup>
     <ClCompile Include="Circle.cpp" />
     <ClCompile Include="Common.cpp" />
-    <ClCompile Include="FMI SVG.cpp" />
+    <ClCompile Include="Line.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="String.cpp" />
     <ClCompile Include="SVGCircle.cpp" />
+    <ClCompile Include="SVGCollection.cpp" />
     <ClCompile Include="SVGCollection.hpp" />
     <ClCompile Include="SVGGeometryAttribute.hpp" />
+    <ClCompile Include="SVGLine.cpp" />
     <ClCompile Include="SVGRectangle.cpp" />
     <ClCompile Include="SVGShape.cpp" />
+    <ClCompile Include="SVGSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="App.hpp" />
     <ClInclude Include="Circle.hpp" />
     <ClInclude Include="Common.hpp" />
     <ClInclude Include="IPrintable.hpp" />
@@ -169,6 +174,7 @@
     <ClInclude Include="Point.hpp" />
     <ClInclude Include="SVGRectangle.hpp" />
     <ClInclude Include="Shape.hpp" />
+    <ClInclude Include="SVGSystem.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -20,7 +20,7 @@ public:
 	~List();
 
 	List(List&& other);
-	List& operator= (List&& other);
+	List& operator= (List&& other) noexcept;
 
 	bool contains(const T& element) const;
 
@@ -196,7 +196,7 @@ List<T>::List(List&& other) {
 }
 
 template <typename T>
-List<T>& List<T>::operator= (List&& other) {
+List<T>& List<T>::operator= (List&& other) noexcept {
 	delete[] data;
 	data = other.data;
 	count = other.count;

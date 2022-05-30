@@ -3,41 +3,41 @@
 
 class Point
 {
-	int x;
-	int y;
+	double x;
+	double y;
 
 public:
 	Point() :x(0), y(0) {}
-	Point(int x, int y) :x(x), y(y) {}
+	Point(double x, double y) :x(x), y(y) {}
 
 	double distanceTo(const Point& other) const
 	{
 		return distanceTo(other.x, other.y);
 	}
 
-	double distanceTo(int x, int y) const
+	double distanceTo(double x, double y) const
 	{
-		int dx = this->x - x;
-		int dy = this->y - y;
+		double dx = this->x - x;
+		double dy = this->y - y;
 
 		return sqrt(dx * dx + dy * dy);
 	}
 
-	void translate(int dx, int dy) {
+	void translate(double dx, double dy) {
 		x += dx;
 		y += dy;
 	}
 
-	void set(int x, int y) {
+	void set(double x, double y) {
 		this->x = x;
 		this->y = y;
 	}
 
-	int getX()const {
+	double getX()const {
 		return x;
 	}
 
-	int getY()const {
+	double getY()const {
 		return y;
 	}
 };
