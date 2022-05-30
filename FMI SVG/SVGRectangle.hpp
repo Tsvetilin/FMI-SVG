@@ -7,7 +7,7 @@ class SVGRectangle : public virtual Rectangle, public virtual SVGShape
 {
 public:
 	SVGRectangle(const SVGElement& element);
-	SVGRectangle(double x, double y, double width, double heigth);
+	SVGRectangle(double x, double y, double width, double height);
 	virtual void translate(double x, double y) override;
 	virtual void print(std::ostream& stream) const override;
 };

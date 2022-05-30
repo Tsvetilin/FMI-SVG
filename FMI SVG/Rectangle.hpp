@@ -4,11 +4,11 @@
 class Rectangle : public virtual Shape
 {
 protected:
-	void createRectangle(double x, double y, double width, double heigth);
+	void createRectangle(double x, double y, double width, double height);
 
 public:
 	Rectangle();
-	Rectangle(double x, double y, double width, double heigth);
+	Rectangle(double x, double y, double width, double height);
 	virtual double getArea() const override;
 	virtual double getPerimeter()  const override;
 	virtual bool isPointIn(double x, double y) const override;

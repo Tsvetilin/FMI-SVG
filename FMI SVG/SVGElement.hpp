@@ -17,6 +17,34 @@ protected:
 	String elementName;
 	ElementType type;
 
+	String determineName(ElementType type) {
+		if (type==ElementType::Reactangle) {
+			return rectangleName;
+		}
+		else if (type == ElementType::Circle) {
+			return circleName;
+		}
+		else if (type == ElementType::Line) {
+			return lineName;
+		}
+
+		return "";
+	}
+
+	ElementType determineElementType(const String& str) {
+		if (str == circleName) {
+			return ElementType::Circle;
+		}
+		else if (str == lineName) {
+			return ElementType::Line;
+		}
+		else if (str == rectangleName) {
+			return ElementType::Reactangle;
+		}
+
+		return ElementType::Unknown;
+	}
+
 	SVGAttribute* cloneAttribute(const SVGAttribute* other) {
 		if (const SVGGeometryAttribute* attr = dynamic_cast<const SVGGeometryAttribute*>(other)) {
 			return new SVGGeometryAttribute(*attr);
@@ -58,15 +86,48 @@ protected:
 	}
 
 	void parseSVGString(const String& svgString) {
+		String str = svgString.substr(1, svgString.getLength() - 1);
 
+		elementName = std::move(matchCmd(str));
+		type = determineElementType(elementName);
+
+		if (type == ElementType::Unknown) {
+			return;
+		}
+
+		str = std::move(skipCmd(str));
+		while (str.indexOf('"') != -1) {
+			addAttribute(getToEqualSign(str), getQuotes(str));
+			str = std::move(getAfterQuotes(str));
+		}
+	}
+
+	void addAttribute(const String& name, const String& value) {
+		if (geometryAttributesList.contains(name)) {
+			attributes.add(new SVGGeometryAttribute(name, value));
+		}
+		else {
+			attributes.add(new SVGStyleAttribute(name, value));
+		}
+	}
+
+	void addAttribute(const String& name, double value) {
+		if (geometryAttributesList.contains(name)) {
+			attributes.add(new SVGGeometryAttribute(name, ""));
+		}
+		else {
+			attributes.add(new SVGStyleAttribute(name, ""));
+		}
+
+		setAttribute(name, value);
 	}
 
 public:
 
 	SVGElement() :type(ElementType::Unknown) {}
 
-	SVGElement(ElementType type):type(type){
-		//name = determineName(type);
+	SVGElement(ElementType type) :type(type) {
+		elementName = determineName(type);
 	}
 
 	SVGElement(const String& svgString) {
@@ -154,9 +215,3 @@ public:
 		return std::move(result);
 	}
 };
-/*
-ElementType determineElementType(const String& str) {
-	return ElementType::Unknown;
-}
-
-*/

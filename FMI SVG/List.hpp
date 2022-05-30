@@ -15,6 +15,7 @@ class List {
 public:
 	List();
 	List(size_t);
+	List(const T[],size_t);
 	List(const List& other);
 	List& operator= (const List& other);
 	~List();
@@ -41,6 +42,17 @@ public:
 	}
 
 };
+
+template <typename T>
+List<T>::List(const T arr[],size_t count ) {
+	this->count = count;
+	capacity = count;
+	data = new T[capacity];
+	for (size_t i = 0; i < count; i++)
+	{
+		data[i] = arr[i];
+	}
+}
 
 template <typename T>
 void List<T>::copyFrom(const List& other) {

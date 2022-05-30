@@ -5,7 +5,7 @@
 #include "SVGLine.hpp"
 #include <fstream>
 
-class SVGCollection : IPrintable {
+class SVGCollection : public IPrintable {
 	List<SVGShape*> shapes;
 	String svgMetadata;
 

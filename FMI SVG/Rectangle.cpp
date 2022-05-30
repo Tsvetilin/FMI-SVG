@@ -1,18 +1,18 @@
 #include "Rectangle.hpp"
 
 
-void Rectangle::createRectangle(double x, double y, double width, double heigth) {
+void Rectangle::createRectangle(double x, double y, double width, double height) {
 	setPoint(0, x, y);
 	setPoint(1, x + width, y);
-	setPoint(2, x + width, y + heigth);
-	setPoint(3, x, y + heigth);
+	setPoint(2, x + width, y + height);
+	setPoint(3, x, y + height);
 }
 
 Rectangle::Rectangle() : Shape(4) {}
 
-Rectangle::Rectangle(double x, double y, double width, double heigth) : Shape(4)
+Rectangle::Rectangle(double x, double y, double width, double height) : Shape(4)
 {
-	createRectangle(x, y, width, heigth);
+	createRectangle(x, y, width, height);
 }
 
 double Rectangle::getArea() const {

@@ -18,69 +18,61 @@ bool SVGCollection::parseDocument(std::istream& input) {
 	while (!input.eof()) {
 		str = getline(input);
 		while (str != "") {
-			size_t startInd = str.indexOf('<');
-			size_t endInd = str.indexOf('>');
-
+			int startInd = str.indexOf('<');
+			int endInd = str.indexOf('>');
+			String current;
 			// tag opens and closes here
 			if (endInd != -1 && hasCompletedTag && startInd < endInd && startInd != -1) {
 				hasCompletedTag = true;
-				String subs = std::move(str.substr(startInd, endInd - startInd));
-				if (isInSvg) {
-					SVGElement element(subs);
-					if (element.getElementType() != ElementType::Unknown) {
-						addShape(element);
-					}
-				}
-				else {
-					svgMetadata += subs + "\n";
-				}
-
+				current = std::move(str.substr(startInd, endInd - startInd + 1));
 				str = str.substr(endInd + 1, str.getLength() - endInd - 1);
 			}
 			// tag was opened before and closes here
 			else if (endInd != -1 && !hasCompletedTag && (startInd > endInd || startInd == -1)) {
 				hasCompletedTag = true;
-				String subs = std::move(str.substr(0, endInd));
-				if (isInSvg) {
-					currentTag += subs;
-					SVGElement element(currentTag);
-					if (element.getElementType() != ElementType::Unknown) {
-						addShape(element);
-					}
-				}
-				else {
-					svgMetadata += subs + "\n";
-				}
-
+				current = std::move(str.substr(0, endInd + 1));
 				str = str.substr(endInd + 1, str.getLength() - endInd - 1);
 			}
 			// tag is opened here but not closed
 			else if (endInd == -1 && startInd != -1 && hasCompletedTag) {
 				hasCompletedTag = false;
-				String subs = std::move(str.substr(startInd, str.getLength() - startInd));
-				if (isInSvg) {
-					currentTag += subs;
-				}
-				else {
-					svgMetadata += subs + "\n";
-				}
-
+				current = std::move(str.substr(startInd, str.getLength() - startInd));
 				str = "";
 			}
 			//tag neither opens nor closes here
 			else if (endInd == -1 && startInd == -1) {
-				if (isInSvg) {
-					currentTag += str;
-				}
-				else {
-					svgMetadata += str + "\n";
-				}
-
 				str = "";
+				current = str;
 			}
 			else return false;
+
+			if (isInSvg) {
+				currentTag += current;
+
+				if (currentTag == "</svg>") {
+					return true;
+				}
+			}
+			else {
+				if (current == "<svg>") {
+					isInSvg = true;
+					continue;
+				}
+
+				svgMetadata += current + "\n";
+			}
+
+			if (isInSvg && hasCompletedTag) {
+				SVGElement element(currentTag);
+				if (element.getElementType() != ElementType::Unknown) {
+					addShape(element);
+				}
+				currentTag = "";
+			}
 		}
 	}
+
+	return false;
 }
 
 SVGCollection::SVGCollection() :isLoaded(false) {}

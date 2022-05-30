@@ -184,3 +184,18 @@ String getAfterQuotes(const String& input) {
 
 	return input.substr(index + 2, input.getLength() - index - 2);
 }
+
+String getToEqualSign(const String& input){
+	size_t startIndex = 0;
+
+	while (input[startIndex] == ' ') {
+		++startIndex;
+	}
+
+	size_t wordLength = 0;
+	while (input[startIndex + wordLength] != '=' && input[startIndex + wordLength] != '\0') {
+		++wordLength;
+	}
+
+	return std::move(input.substr(startIndex, wordLength));
+}
