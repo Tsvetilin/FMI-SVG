@@ -210,7 +210,7 @@ public:
 			result += attributes[i]->getAttribute() + " ";
 		}
 
-		result += ">";
+		result += "/>";
 
 		return std::move(result);
 	}

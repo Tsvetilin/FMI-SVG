@@ -34,7 +34,7 @@ bool isDigit(char c);
 bool isAlphaNumericSymbol(char c);
 
 size_t parseToUInt(const String& input);
-double parseToDouble(const String& str);
+double parseToDouble(String str);
 String doubleToString(double d);
 
 int charToInt(char c);

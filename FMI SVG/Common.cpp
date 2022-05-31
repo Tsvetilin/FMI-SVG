@@ -66,17 +66,23 @@ size_t parseToUInt(const String& input) {
 	return result;
 }
 
-double parseToDouble(const String& str) {
+double parseToDouble(String str) {
+	double negativeMultiplier = 1.0;
+	if (str[0] == '-') {
+		negativeMultiplier = -1.0;
+		str = str.substr(1, str.getLength() - 1);
+	}
+
 	int dotInd = str.indexOf('.');
 	if (dotInd == -1) {
-		return parseToUInt(str);
+		return parseToUInt(str) * negativeMultiplier;
 	}
 
 	size_t intPart = parseToUInt(str.substr(0, dotInd));
 	size_t floatingPart = parseToUInt(str.substr(dotInd + 1, str.getLength() - dotInd - 1));
 	size_t floatingLength = getNumberDigitsCount(floatingPart);
 
-	return (double)floatingPart / pow(10, floatingLength) + intPart;
+	return ((double)floatingPart / pow(10, floatingLength) + intPart) * negativeMultiplier;
 }
 
 String doubleToString(double d) {
@@ -109,6 +115,9 @@ String matchCmd(const String& input) {
 }
 
 String skipCmd(const String& input) {
+	if (input.getLength() == 0) {
+		return input;
+	}
 
 	size_t startIndex = 0;
 	size_t wordLength = 0;
@@ -119,7 +128,11 @@ String skipCmd(const String& input) {
 		++startIndex;
 	}
 
-	while (input[startIndex + wordLength] != ' ' && input[startIndex + wordLength] != '\0') {
+	while (input[startIndex + wordLength] != ' ') {
+		if (input[startIndex + wordLength] == '\0') {
+			return "";
+		}
+
 		++wordLength;
 	}
 
@@ -148,6 +161,10 @@ String getQuotes(const String& input) {
 }
 
 String getLastArgument(const String& input) {
+	if (input.getLength() == 0) {
+		return "";
+	}
+
 	size_t index = input.getLength() - 1;
 
 	while (input[index] == ' ' && index >= 0) {
@@ -185,7 +202,7 @@ String getAfterQuotes(const String& input) {
 	return input.substr(index + 2, input.getLength() - index - 2);
 }
 
-String getToEqualSign(const String& input){
+String getToEqualSign(const String& input) {
 	size_t startIndex = 0;
 
 	while (input[startIndex] == ' ') {

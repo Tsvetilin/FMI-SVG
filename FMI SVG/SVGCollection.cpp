@@ -130,7 +130,7 @@ bool SVGCollection::saveDocument(const String& path) {
 		shapes[i]->writeSVGTag(file);
 		file << "\n";
 	}
-	file << "<svg>\n";
+	file << "</svg>\n";
 
 	file.close();
 
@@ -273,11 +273,13 @@ bool SVGCollection::printWithInRectangle(std::ostream& stream, double x, double 
 		return false;
 	}
 
-	Shape* rect = new Rectangle(x, y, width, height);
+	Rectangle rect = Rectangle(x, y, width, height);
 	for (size_t i = 0; i < shapes.getCount(); i++)
 	{
-		if (shapes[i]->isWithin(rect)) {
+		if (shapes[i]->isWithin(&rect)) {
+			stream << (i + 1) << ". ";
 			shapes[i]->print(stream);
+			stream << std::endl;
 		}
 	}
 
@@ -293,11 +295,13 @@ bool SVGCollection::printWithInCircle(std::ostream& stream, double x, double y, 
 		return false;
 	}
 
-	Shape* circle = new Circle(x, y, r);
+	Circle circle = Circle(x, y, r);
 	for (size_t i = 0; i < shapes.getCount(); i++)
 	{
-		if (shapes[i]->isWithin(circle)) {
+		if (shapes[i]->isWithin(&circle)) {
+			stream << (i + 1) << ". ";
 			shapes[i]->print(stream);
+			stream << std::endl;
 		}
 	}
 
@@ -312,7 +316,9 @@ void SVGCollection::printPointIn(std::ostream& stream, double x, double y) {
 	for (size_t i = 0; i < shapes.getCount(); i++)
 	{
 		if (shapes[i]->isPointIn(x, y)) {
+			stream << (i + 1) << ". ";
 			shapes[i]->print(stream);
+			stream << std::endl;
 		}
 	}
 }

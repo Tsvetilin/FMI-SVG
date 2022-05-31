@@ -183,7 +183,7 @@ void SVGSystem::Run(SVGCollection& object, std::ostream& outputStream, std::istr
 			}
 
 			input = std::move(skipCmd(input));
-			size_t index = parseToUInt(getLastArgument(input));
+			size_t index = parseToUInt(input);
 
 			if (index == 0) {
 				if (!collection->translateAll(x, y)) {
@@ -194,7 +194,7 @@ void SVGSystem::Run(SVGCollection& object, std::ostream& outputStream, std::istr
 				}
 			}
 			else {
-				if (!collection->translateSingle(x, y,index)) {
+				if (!collection->translateSingle(x, y, index - 1)) {
 					outputStream << "Error translating figure! Invalid index!" << std::endl;
 				}
 				else {
