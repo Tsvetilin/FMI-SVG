@@ -15,7 +15,7 @@ class List {
 public:
 	List();
 	List(size_t);
-	List(const T[],size_t);
+	List(const T[], size_t);
 	List(const List& other);
 	List& operator= (const List& other);
 	~List();
@@ -28,6 +28,7 @@ public:
 	template<typename K>
 	int getIndexByPredicate(bool predicate(const T&, const K&), const K& value) const;
 
+	void clear();
 	void add(const T& element);
 	void remove(const T& element);
 	void removeAt(size_t index);
@@ -44,7 +45,12 @@ public:
 };
 
 template <typename T>
-List<T>::List(const T arr[],size_t count ) {
+void List<T>::clear() {
+	count = 0;
+}
+
+template <typename T>
+List<T>::List(const T arr[], size_t count) {
 	this->count = count;
 	capacity = count;
 	data = new T[capacity];

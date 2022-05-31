@@ -148,10 +148,13 @@
     <ClCompile Include="String.cpp" />
     <ClCompile Include="SVGCircle.cpp" />
     <ClCompile Include="SVGCollection.cpp" />
+    <ClCompile Include="SVGElement.cpp" />
+    <ClCompile Include="SVGGeometryAttribute.cpp" />
     <ClCompile Include="SVGGeometryAttribute.hpp" />
     <ClCompile Include="SVGLine.cpp" />
     <ClCompile Include="SVGRectangle.cpp" />
     <ClCompile Include="SVGShape.cpp" />
+    <ClCompile Include="SVGStyleAttribute.cpp" />
     <ClCompile Include="SVGSystem.cpp" />
   </ItemGroup>
   <ItemGroup>

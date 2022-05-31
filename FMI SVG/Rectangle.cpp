@@ -4,8 +4,8 @@
 void Rectangle::createRectangle(double x, double y, double width, double height) {
 	setPoint(0, x, y);
 	setPoint(1, x + width, y);
-	setPoint(2, x + width, y + height);
-	setPoint(3, x, y + height);
+	setPoint(2, x + width, y - height);
+	setPoint(3, x, y - height);
 }
 
 Rectangle::Rectangle() : Shape(4) {}
@@ -29,7 +29,7 @@ double Rectangle::getPerimeter()  const {
 
 bool Rectangle::isPointIn(double x, double y) const {
 	return x >= getPoint(0).getX() && x <= getPoint(1).getX() &&
-		y >= getPoint(0).getY() && y <= getPoint(3).getY();
+		y <= getPoint(0).getY() && y >= getPoint(3).getY();
 }
 
 bool Rectangle::isWithin(const Shape* other) const {

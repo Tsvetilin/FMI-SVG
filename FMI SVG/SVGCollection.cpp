@@ -133,8 +133,12 @@ bool SVGCollection::saveDocument(const String& path) {
 	file << "</svg>\n";
 
 	file.close();
+	
+	isLoaded = false;
 
-	isLoaded = !file.good();
+	free();
+	shapes.clear();
+	svgMetadata = "";
 	return !isLoaded;
 }
 
@@ -274,13 +278,19 @@ bool SVGCollection::printWithInRectangle(std::ostream& stream, double x, double 
 	}
 
 	Rectangle rect = Rectangle(x, y, width, height);
+	bool printed = false;
 	for (size_t i = 0; i < shapes.getCount(); i++)
 	{
 		if (shapes[i]->isWithin(&rect)) {
 			stream << (i + 1) << ". ";
 			shapes[i]->print(stream);
 			stream << std::endl;
+			printed = true;
 		}
+	}
+
+	if (!printed) {
+		stream << "No shapes within the rectangle!" << std::endl;
 	}
 
 	return true;
@@ -295,6 +305,7 @@ bool SVGCollection::printWithInCircle(std::ostream& stream, double x, double y, 
 		return false;
 	}
 
+	bool printed = false;
 	Circle circle = Circle(x, y, r);
 	for (size_t i = 0; i < shapes.getCount(); i++)
 	{
@@ -302,7 +313,12 @@ bool SVGCollection::printWithInCircle(std::ostream& stream, double x, double y, 
 			stream << (i + 1) << ". ";
 			shapes[i]->print(stream);
 			stream << std::endl;
+			printed = true;
 		}
+	}
+
+	if (!printed) {
+		stream << "No shapes within the circle!" << std::endl;
 	}
 
 	return true;
@@ -313,13 +329,20 @@ void SVGCollection::printPointIn(std::ostream& stream, double x, double y) {
 		return;
 	}
 
+	bool printed = false;
+
 	for (size_t i = 0; i < shapes.getCount(); i++)
 	{
 		if (shapes[i]->isPointIn(x, y)) {
 			stream << (i + 1) << ". ";
 			shapes[i]->print(stream);
 			stream << std::endl;
+			printed = true;
 		}
+	}
+
+	if (!printed) {
+		stream << "No shapes include the point specified!" << std::endl;
 	}
 }
 

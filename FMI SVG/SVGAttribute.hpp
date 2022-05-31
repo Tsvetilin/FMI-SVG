@@ -52,9 +52,3 @@ public:
 		return name + "=\"" + value + "\"";
 	}
 };
-
-/*
-AttributeType determineAttributeType(const String& str) {
-	return AttributeType::Unknown;
-}
-*/
