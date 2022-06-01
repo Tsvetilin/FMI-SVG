@@ -1,12 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
- "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 
 <svg>
-<rect x="15.0" y="25.0" width="10" height="10" fill="green" />
-<circle cx="10.0" cy="15.0" r="10" fill="blue" />
-<rect x="105.0" y="70.0" width="10" height="10" fill="red" />
+	<rect x="20.0" y="30.0" width="10" height="10" fill="green" />
+	<circle cx="15.0" cy="20.0" r="10" fill="blue" />
+	<rect x="110.0" y="75.0" width="10" height="10" fill="red" />
+	<line x1="10" y1="70" x2="30" y2="100" stroke="red" stroke-width="5px" />
+	<rect x="10" y="7" width="1" height="1" fill="green" />
 </svg>

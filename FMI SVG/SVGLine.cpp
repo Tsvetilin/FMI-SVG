@@ -37,7 +37,6 @@ void SVGLine::print(std::ostream& stream) const {
 		if (attributes[i]->getType() == AttributeType::Style) {
 			attributes[i]->writeAttribute(stream);
 			stream << " ";
-
 		}
 	}
 }

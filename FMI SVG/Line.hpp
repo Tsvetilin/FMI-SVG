@@ -13,6 +13,4 @@ public:
 	virtual double getPerimeter()  const override;
 	virtual bool isPointIn(double x, double y) const override;
 	virtual bool isWithin(const Shape* other) const override;
-
-	virtual void translate(double x, double y) override;
 };

@@ -9,7 +9,7 @@ const String lineName("line");
 const String xName("x");
 const String yName("y");
 const String x1Name("x1");
-const String y1Name("x1");
+const String y1Name("y1");
 const String x2Name("x2");
 const String y2Name("y2");
 const String cxName("cx");

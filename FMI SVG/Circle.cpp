@@ -34,7 +34,3 @@ bool Circle::isWithin(const Shape* other) const {
 		other->isPointIn(centerX, centerY + radius) &&
 		other->isPointIn(centerX, centerY - radius);
 }
-
-void Circle::translate(double x, double y) {
-	getPoint(0).translate(x, y);
-}

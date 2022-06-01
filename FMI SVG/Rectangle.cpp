@@ -42,10 +42,3 @@ bool Rectangle::isWithin(const Shape* other) const {
 
 	return true;
 }
-
-void Rectangle::translate(double x, double y) {
-	for (size_t i = 0; i < getPointsCount(); i++)
-	{
-		getPoint(i).translate(x, y);
-	}
-}
