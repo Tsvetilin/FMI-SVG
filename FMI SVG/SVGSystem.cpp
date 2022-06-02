@@ -1,5 +1,12 @@
 #include "SVGSystem.hpp"
 
+const String rectangleDisplayName("rectangle");
+const String circleDisplayName("circle");
+const String lineDisplayName("line");
+
+const String verticalAttributeName("vertical");
+const String horizontalAttributeName("horizontal");
+
 void SVGSystem::printManual(std::ostream& outputStream)  const {
 	outputStream << "Available commands: " << std::endl <<
 		"open <file name>" << std::endl <<
@@ -19,7 +26,7 @@ void SVGSystem::createShape(String& input, std::ostream& outputStream, std::istr
 	input = std::move(skipCmd(input));
 	String shape = matchCmd(input);
 
-	if (shape == "rectangle") {
+	if (shape == rectangleDisplayName) {
 		input = std::move(skipCmd(input));
 		double x = parseToDouble(matchCmd(input));
 
@@ -39,7 +46,7 @@ void SVGSystem::createShape(String& input, std::ostream& outputStream, std::istr
 			return;
 		}
 	}
-	else if (shape == "line") {
+	else if (shape == lineDisplayName) {
 		input = std::move(skipCmd(input));
 		double x1 = parseToDouble(matchCmd(input));
 
@@ -59,7 +66,7 @@ void SVGSystem::createShape(String& input, std::ostream& outputStream, std::istr
 			return;
 		}
 	}
-	else if (shape == "circle") {
+	else if (shape == circleDisplayName) {
 		input = std::move(skipCmd(input));
 		double x = parseToDouble(matchCmd(input));
 
@@ -86,24 +93,24 @@ void SVGSystem::createShape(String& input, std::ostream& outputStream, std::istr
 void SVGSystem::translate(String& input, std::ostream& outputStream, std::istream& inputSteam) {
 	input = std::move(skipCmd(input));
 
-	double x, y;
+	double x = 0, y = 0;
 
 	String type = getToEqualSign(input);
 	double temp = parseToDouble(getQuotes(input));
-	if (type == "vertical") {
+	if (type == verticalAttributeName) {
 		y = temp;
 	}
-	else if (type == "horizontal") {
+	else if (type == horizontalAttributeName) {
 		x = temp;
 	}
 	input = std::move(skipCmd(input));
 
 	type = getToEqualSign(input);
 	temp = parseToDouble(getQuotes(input));
-	if (type == "vertical") {
+	if (type == verticalAttributeName) {
 		y = temp;
 	}
-	else if (type == "horizontal") {
+	else if (type == horizontalAttributeName) {
 		x = temp;
 	}
 
@@ -132,7 +139,7 @@ void SVGSystem::within(String& input, std::ostream& outputStream, std::istream& 
 	input = std::move(skipCmd(input));
 	String shape = matchCmd(input);
 
-	if (shape == "rectangle") {
+	if (shape == rectangleDisplayName) {
 		input = std::move(skipCmd(input));
 		double x = parseToDouble(matchCmd(input));
 
@@ -150,7 +157,7 @@ void SVGSystem::within(String& input, std::ostream& outputStream, std::istream& 
 			return;
 		}
 	}
-	else if (shape == "circle") {
+	else if (shape == circleDisplayName) {
 		input = std::move(skipCmd(input));
 		double x = parseToDouble(matchCmd(input));
 
