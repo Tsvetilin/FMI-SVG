@@ -1,6 +1,5 @@
 #include "Rectangle.hpp"
 
-
 void Rectangle::createRectangle(double x, double y, double width, double height) {
 	setPoint(0, x, y);
 	setPoint(1, x + width, y);
